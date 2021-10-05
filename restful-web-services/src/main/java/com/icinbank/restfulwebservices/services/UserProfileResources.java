@@ -1,4 +1,4 @@
-package com.icinbank.rest.webservices.restfulwebservices.services;
+package com.icinbank.restfulwebservices.services;
 
 import java.util.List;
 
@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.icinbank.rest.webservices.restfulwebservices.model.UserProfile;
+import com.icinbank.restfulwebservices.model.UserProfile;
 
 
 

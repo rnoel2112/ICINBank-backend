@@ -1,4 +1,4 @@
-package com.icinbank.rest.webservices.restfulwebservices;
+package com.icinbank.restfulwebservices;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

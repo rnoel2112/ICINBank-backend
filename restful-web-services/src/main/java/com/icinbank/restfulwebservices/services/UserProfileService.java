@@ -1,4 +1,4 @@
-package com.icinbank.rest.webservices.restfulwebservices.services;
+package com.icinbank.restfulwebservices.services;
 
 import java.util.ArrayList;
 import java.util.Date;
@@ -6,7 +6,7 @@ import java.util.List;
 
 import org.springframework.stereotype.Service;
 
-import com.icinbank.rest.webservices.restfulwebservices.model.UserProfile;
+import com.icinbank.restfulwebservices.model.UserProfile;
 
 
 

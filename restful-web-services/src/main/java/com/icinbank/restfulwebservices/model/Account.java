@@ -1,4 +1,4 @@
-package com.icinbank.rest.webservices.restfulwebservices.model;
+package com.icinbank.restfulwebservices.model;
 
 import java.util.Date;
 

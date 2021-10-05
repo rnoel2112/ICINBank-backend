@@ -1,4 +1,4 @@
-package com.icinbank.rest.webservices.restfulwebservices.services;
+package com.icinbank.restfulwebservices.services;
 
 import java.util.List;
 
@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.icinbank.rest.webservices.restfulwebservices.model.Account;
+import com.icinbank.restfulwebservices.model.Account;
 
 @CrossOrigin(origins="http://localhost:4200")
 @RestController
