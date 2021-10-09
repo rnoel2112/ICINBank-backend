@@ -2,8 +2,17 @@ package com.icinbank.restfulwebservices.model;
 
 import java.util.Date;
 
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.Table;
+
+@Entity
+@Table (name = "userprofile")
 public class UserProfile {
-	
+	@Id
+	@GeneratedValue(strategy = GenerationType.AUTO)
 	private long 	Id ;
 	private String 	username;
 	private String 	nationalId;
@@ -22,6 +31,11 @@ public class UserProfile {
 		this.password = password;
 		this.bankingRestriction = bankingRestriction;
 		this.checkBookRequest = checkBookRequest;
+	}
+	
+	public UserProfile() {
+		super();
+		// TODO Auto-generated constructor stub
 	}
 	
 	public long getId() {

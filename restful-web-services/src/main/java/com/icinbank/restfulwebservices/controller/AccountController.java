@@ -1,4 +1,4 @@
-package com.icinbank.restfulwebservices.services;
+package com.icinbank.restfulwebservices.controller;
 
 import java.util.List;
 
@@ -14,13 +14,14 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.icinbank.restfulwebservices.model.Account;
+import com.icinbank.restfulwebservices.services.AccountServiceImpl;
 
 @CrossOrigin(origins="http://localhost:4200")
 @RestController
-public class AccountResources {
+public class AccountController {
 	
 	@Autowired
-	private AccountService accountService;
+	private AccountServiceImpl accountService;
 	
 	@GetMapping("/users/{username}/accountdetails")
 	public List <Account> getAllAccount(@PathVariable String username){
@@ -30,7 +31,7 @@ public class AccountResources {
 	@GetMapping("/users/{username}/useraccountdetails")
 	public List<Account> getAccounts(@PathVariable String username){
 		
-		return accountService.findAccount(username);
+		return accountService.getByUsername(username);
 	}
 	
 
@@ -49,7 +50,7 @@ public class AccountResources {
 	
 	@DeleteMapping("/users/{username}/accountdetail/{id}")
 	public ResponseEntity<Void> deleteAccount(@PathVariable String username, @PathVariable long id){
-		Account account = accountService.deleteById(id);
+		Account account = accountService.deleteById(id); 
 		if (account != null) {
 			return ResponseEntity.noContent().build();
 		}
@@ -69,10 +70,6 @@ public class AccountResources {
 	@PostMapping("/users/{username}/transfer")
 	public ResponseEntity<Account> transfer(@PathVariable String username,
 			@RequestBody List<Account> accounts){
-	
-		//for (Account aaccount : accounts){
-		//	 accountUpdated = accountService.save(aaccount);
-		//}
 		
 		Account accountUpdated = (Account) accounts.get(1);
 		Account missing = accountService.accountInfo(accountUpdated.getUsername());
@@ -80,7 +77,6 @@ public class AccountResources {
 		System.out.println("Saving..."+ accountUpdated.toString());
 		
 		accountUpdated = accountService.save(accountUpdated);
-		
 		
 		accountUpdated = (Account) accounts.get(0);
 		

@@ -2,8 +2,18 @@ package com.icinbank.restfulwebservices.model;
 
 import java.util.Date;
 
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.Table;
+
+@Entity
+@Table (name = "account")
 public class Account {
-	private long 	Id ;
+	@Id
+	@GeneratedValue(strategy = GenerationType.AUTO)
+	private long 	Id;
 	private String 	username;
 	private String 	accountId;
 	private Boolean	isSaving;
@@ -13,7 +23,10 @@ public class Account {
 	private long 	amount;
 	private long 	balance;
 	
-	
+	public Account() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
 	
 	public Account(long id, String username, String accountId, Boolean isSaving, String activity, Date transactionDate,
 			Boolean isCredit, long amount, long balance) {

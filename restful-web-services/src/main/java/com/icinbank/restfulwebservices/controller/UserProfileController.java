@@ -1,4 +1,4 @@
-package com.icinbank.restfulwebservices.services;
+package com.icinbank.restfulwebservices.controller;
 
 import java.util.List;
 
@@ -15,18 +15,18 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.icinbank.restfulwebservices.model.UserProfile;
+import com.icinbank.restfulwebservices.services.UserProfileServiceImpl;
 
 
 
 @CrossOrigin(origins="http://localhost:4200")
 @RestController
-public class UserProfileResources {
+public class UserProfileController {
 	
 	@Autowired
-	private UserProfileService profileService;
+	private UserProfileServiceImpl profileService;
 	
 
-	
 	@GetMapping("/users/{username}/profiledetails")
 	public List <UserProfile> getAllProfile(@PathVariable String username){
 		return profileService.findAll();
@@ -35,7 +35,7 @@ public class UserProfileResources {
 	
 	@GetMapping("/users/{username}/profiledetail")
 	public ResponseEntity<UserProfile> getProfile(@PathVariable String username){
-		UserProfile profile = profileService.findUserProfile(username);
+		UserProfile profile = profileService.getByUsername(username);
 		if (profile != null) {
 			return new ResponseEntity<UserProfile>(profile, HttpStatus.OK);
 		}
@@ -80,5 +80,4 @@ public class UserProfileResources {
 		return new ResponseEntity<UserProfile>(profileUpdated, HttpStatus.OK);
 	}
 	
-
 }
