@@ -31,16 +31,29 @@ public class AccountController {
 	@GetMapping("/users/{username}/useraccountdetails")
 	public List<Account> getAccounts(@PathVariable String username){
 		
-		return accountService.getByUsername(username);
+		//return accountService.getByUsername(username);
+		return accountService.findByUsernameOrderByTransactionDateDesc(username);
 	}
 	
 
 	@GetMapping("/users/{username}/accountinfo")
-	public ResponseEntity <Account> getAccoountInfo(@PathVariable String username){
+	public ResponseEntity <Account> accountInfo(@PathVariable String username){
 			
 		Account account =  accountService.accountInfo(username);
 		if (account != null) {
 			System.out.println ("Account Info:" + account.toString());
+			return new ResponseEntity<Account>(account, HttpStatus.OK);
+		}
+		
+		return ResponseEntity.noContent().build();
+	}
+	
+	@GetMapping("/users/{username}/accountBalance")
+	public ResponseEntity <Account> accountBalance(@PathVariable String username){
+			
+		Account account = accountService.findFirstByUsernameOrderByTransactionDateDesc(username);
+		if (account != null) {
+			System.out.println ("Account Balance:" + account.toString());
 			return new ResponseEntity<Account>(account, HttpStatus.OK);
 		}
 		
@@ -61,8 +74,7 @@ public class AccountController {
 	@PostMapping("/users/{username}/deposit")
 	public ResponseEntity<Account> deposit(@PathVariable String username,
 			@RequestBody Account account){
-		Account accountUpdated = accountService.save(account);
-		
+		Account accountUpdated = accountService.saveWithBalanceUpdate(account,username);
 		return new ResponseEntity<Account>(accountUpdated, HttpStatus.OK);
 	}
 	
@@ -72,17 +84,10 @@ public class AccountController {
 			@RequestBody List<Account> accounts){
 		
 		Account accountUpdated = (Account) accounts.get(1);
-		Account missing = accountService.accountInfo(accountUpdated.getUsername());
-		accountUpdated.setBalance(missing.getBalance()+accountUpdated.getAmount());
-		System.out.println("Saving..."+ accountUpdated.toString());
-		
-		accountUpdated = accountService.save(accountUpdated);
+		accountService.saveWithBalanceUpdate(accountUpdated,accountUpdated.getUsername());
 		
 		accountUpdated = (Account) accounts.get(0);
-		
-		System.out.println("Saving..."+ accountUpdated.toString());
-		
-		accountUpdated = accountService.save(accountUpdated);
+		accountService.saveWithBalanceUpdate(accountUpdated,accountUpdated.getUsername());
 	
 		return new ResponseEntity<Account>(accountUpdated, HttpStatus.OK);
 	}

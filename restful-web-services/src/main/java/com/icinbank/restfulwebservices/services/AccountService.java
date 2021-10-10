@@ -9,9 +9,11 @@ import com.icinbank.restfulwebservices.model.Account;
 @Service
 public interface AccountService {
 	
-	List 	<Account> 	findAll();
-	List 	<Account> 	getByUsername(String username);
-	Account 			save(Account account);
-	Account 			deleteById (long id);
-	Account 			findById (long id);
+	List <Account> 	findAll();
+	List <Account> 	getByUsername(String username);
+	List <Account>  findByUsernameOrderByTransactionDateDesc(String username);
+	Account save(Account account);
+	Account deleteById (long id);
+	Account findById (long id);
+	Account findFirstByUsernameOrderByTransactionDateDesc(String username);
 }

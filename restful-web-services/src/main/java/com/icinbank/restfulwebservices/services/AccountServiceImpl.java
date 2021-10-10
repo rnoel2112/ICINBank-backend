@@ -35,20 +35,31 @@ public class AccountServiceImpl implements AccountService {
 
 	public Account accountInfo(String username){
 		
-		List<Account> accounts = this.aAccountRepository.getByUsername(username);
+		return findFirstByUsernameOrderByTransactionDateDesc(username);
+
+//		List<Account> accounts = this.aAccountRepository.getByUsername(username);
+//		// we just need any one account
+//		for (Account account:accounts) {
+//			return account;	
+//		}
+//		return null;	
+	}
 	
-		// we just need any one account
-		for (Account account:accounts) {
-			return account;	
+	public Account saveWithBalanceUpdate(Account account, String username){
+		
+		Account accountUpdated = this.findFirstByUsernameOrderByTransactionDateDesc(username);
+		
+		System.out.println("max by transact time"+accountUpdated.toString());
+		if (account.getIsCredit()) {
+			account.setBalance(accountUpdated.getBalance()-account.getAmount());
+		}else {
+			account.setBalance(accountUpdated.getBalance()+account.getAmount());
 		}
-		return null;	
+
+		return this.save(account);
 	}
 
-//	public Account saveAndReturnAccount (Account aAcount){
-//		aAcount = this.aAccountRepository.save(aAcount);
-//		return aAcount;
-//	}
-	
+
 	@Override
 	public Account deleteById(long id) {
 		return this.aAccountRepository.deleteById(id);
@@ -57,6 +68,18 @@ public class AccountServiceImpl implements AccountService {
 	@Override
 	public Account findById(long id) {
 		return this.aAccountRepository.findById(id);
+	}
+
+	@Override
+	public Account findFirstByUsernameOrderByTransactionDateDesc(String username) {
+		
+		return this.aAccountRepository.findFirstByUsernameOrderByTransactionDateDesc(username);
+	
+	}
+
+	@Override
+	public List<Account> findByUsernameOrderByTransactionDateDesc(String username) {
+		return this.aAccountRepository.findByUsernameOrderByTransactionDateDesc(username);
 	}
 	
 }

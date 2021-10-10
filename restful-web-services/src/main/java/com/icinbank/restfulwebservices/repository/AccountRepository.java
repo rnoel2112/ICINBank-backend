@@ -12,7 +12,8 @@ import com.icinbank.restfulwebservices.model.Account;
 public interface AccountRepository extends JpaRepository <Account, Long> { 
 	
 	List <Account> getByUsername(String username);
+	List <Account> findByUsernameOrderByTransactionDateDesc(String username);
 	Account	deleteById (long id);
 	Account findById (long id);
-	
+	Account findFirstByUsernameOrderByTransactionDateDesc(String username);
 }

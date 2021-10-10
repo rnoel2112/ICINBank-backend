@@ -19,72 +19,96 @@ public class UserProfile {
 	private Date 	dateOfBirth;
 	private String 	password;
 	private Boolean	bankingRestriction;
-	private Boolean	checkBookRequest;	
-	
-	public UserProfile(long id, String username, String nationalId, Date dateOfBirth, String password,
-			Boolean bankingRestriction, Boolean checkBookRequest) {
-		super();
-		Id = id;
-		this.username = username;
-		this.nationalId = nationalId;
-		this.dateOfBirth = dateOfBirth;
-		this.password = password;
-		this.bankingRestriction = bankingRestriction;
-		this.checkBookRequest = checkBookRequest;
-	}
-	
+	private Boolean	checkBookRequest;
+	private	Boolean	isAdmin;
+
 	public UserProfile() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
-	
+
+	public UserProfile(long id, String username, String nationalId, Date dateOfBirth, String password,
+			Boolean bankingRestriction, Boolean checkBookRequest, Boolean isAdmin) {
+		super();
+		Id = id;
+		this.username = username;
+		this.nationalId = nationalId;
+		this.dateOfBirth = dateOfBirth;
+		this.password = password;
+		this.bankingRestriction = bankingRestriction;
+		this.checkBookRequest = checkBookRequest;
+		this.isAdmin = isAdmin;
+	}
+
 	public long getId() {
 		return Id;
 	}
+
 	public void setId(long id) {
 		Id = id;
 	}
+
 	public String getUsername() {
 		return username;
 	}
+
 	public void setUsername(String username) {
 		this.username = username;
 	}
+
 	public String getNationalId() {
 		return nationalId;
 	}
+
 	public void setNationalId(String nationalId) {
 		this.nationalId = nationalId;
 	}
+
 	public Date getDateOfBirth() {
 		return dateOfBirth;
 	}
+
 	public void setDateOfBirth(Date dateOfBirth) {
 		this.dateOfBirth = dateOfBirth;
 	}
+
 	public String getPassword() {
 		return password;
 	}
+
 	public void setPassword(String password) {
 		this.password = password;
 	}
+
 	public Boolean getBankingRestriction() {
 		return bankingRestriction;
 	}
+
 	public void setBankingRestriction(Boolean bankingRestriction) {
 		this.bankingRestriction = bankingRestriction;
 	}
+
 	public Boolean getCheckBookRequest() {
 		return checkBookRequest;
 	}
+
 	public void setCheckBookRequest(Boolean checkBookRequest) {
 		this.checkBookRequest = checkBookRequest;
 	}
+
+	public Boolean getIsAdmin() {
+		return isAdmin;
+	}
+
+	public void setIsAdmin(Boolean isAdmin) {
+		this.isAdmin = isAdmin;
+	}
+
 	@Override
 	public String toString() {
 		return "UserProfile [Id=" + Id + ", username=" + username + ", nationalId=" + nationalId + ", dateOfBirth="
 				+ dateOfBirth + ", password=" + password + ", bankingRestriction=" + bankingRestriction
-				+ ", checkBookRequest=" + checkBookRequest + "]";
+				+ ", checkBookRequest=" + checkBookRequest + ", isAdmin=" + isAdmin + "]";
 	}
 
 	@Override
@@ -95,6 +119,7 @@ public class UserProfile {
 		result = prime * result + ((bankingRestriction == null) ? 0 : bankingRestriction.hashCode());
 		result = prime * result + ((checkBookRequest == null) ? 0 : checkBookRequest.hashCode());
 		result = prime * result + ((dateOfBirth == null) ? 0 : dateOfBirth.hashCode());
+		result = prime * result + ((isAdmin == null) ? 0 : isAdmin.hashCode());
 		result = prime * result + ((nationalId == null) ? 0 : nationalId.hashCode());
 		result = prime * result + ((password == null) ? 0 : password.hashCode());
 		result = prime * result + ((username == null) ? 0 : username.hashCode());
@@ -127,6 +152,11 @@ public class UserProfile {
 				return false;
 		} else if (!dateOfBirth.equals(other.dateOfBirth))
 			return false;
+		if (isAdmin == null) {
+			if (other.isAdmin != null)
+				return false;
+		} else if (!isAdmin.equals(other.isAdmin))
+			return false;
 		if (nationalId == null) {
 			if (other.nationalId != null)
 				return false;
@@ -145,8 +175,6 @@ public class UserProfile {
 		return true;
 	}
 	
-	
-	
-	
+		
 
 }
