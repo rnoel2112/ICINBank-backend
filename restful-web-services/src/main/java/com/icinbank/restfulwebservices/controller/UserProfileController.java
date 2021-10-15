@@ -22,7 +22,8 @@ import com.icinbank.restfulwebservices.services.UserProfileServiceImpl;
 
 
 
-@CrossOrigin(origins="http://localhost:4200")
+//@CrossOrigin(origins="http://localhost:4200")
+@CrossOrigin(origins="http://18.141.184.219:4200")
 @RestController
 public class UserProfileController {
 	

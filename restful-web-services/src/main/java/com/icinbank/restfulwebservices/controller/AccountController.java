@@ -16,7 +16,8 @@ import org.springframework.web.bind.annotation.RestController;
 import com.icinbank.restfulwebservices.model.Account;
 import com.icinbank.restfulwebservices.services.AccountServiceImpl;
 
-@CrossOrigin(origins="http://localhost:4200")
+//@CrossOrigin(origins="http://localhost:4200")
+@CrossOrigin(origins="http://18.141.184.219:4200")
 @RestController
 public class AccountController {
 	
