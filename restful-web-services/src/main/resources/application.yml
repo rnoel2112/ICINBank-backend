@@ -3,7 +3,7 @@ spring:
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver
     url: jdbc:mysql://mysql-standalone/test?allowPublicKeyRetrieval=true&useSSL=false
-    username: root
+    username: simplilearn
     password: MySql2021
     hikari:
       initialization-fail-timeout: 0
