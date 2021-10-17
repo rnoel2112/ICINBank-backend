@@ -2,7 +2,7 @@
 spring:
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver
-    url: jdbc:mysql://mysql-standalone/test?allowPublicKeyRetrieval=true&useSSL=false
+    url: jdbc:mysql://mysql-standalone/ICINBank?allowPublicKeyRetrieval=true&useSSL=false
     username: simplilearn
     password: MySql2021
     hikari:
@@ -13,3 +13,4 @@ spring:
     show-sql: true
     hibernate:
       ddl-auto: create
+

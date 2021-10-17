@@ -13,7 +13,9 @@ public interface AccountRepository extends JpaRepository <Account, Long> {
 	
 	List <Account> getByUsername(String username);
 	List <Account> findByUsernameOrderByTransactionDateDesc(String username);
+	List <Account> findByUsernameOrderByTransactionDateAsc(String username);
 	Account	deleteById (long id);
 	Account findById (long id);
+	Account findFirstByUsernameOrderByTransactionDateAsc(String username);
 	Account findFirstByUsernameOrderByTransactionDateDesc(String username);
 }

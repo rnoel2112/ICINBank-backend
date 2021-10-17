@@ -16,8 +16,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.icinbank.restfulwebservices.model.Account;
 import com.icinbank.restfulwebservices.services.AccountServiceImpl;
 
-//@CrossOrigin(origins="http://localhost:4200")
-@CrossOrigin(origins="http://3.1.222.123:4200")
+@CrossOrigin(origins="http://localhost:4200")
 @RestController
 public class AccountController {
 	
@@ -51,7 +50,7 @@ public class AccountController {
 	
 	@GetMapping("/users/{username}/accountBalance")
 	public ResponseEntity <Account> accountBalance(@PathVariable String username){
-			
+		
 		Account account = accountService.findFirstByUsernameOrderByTransactionDateDesc(username);
 		if (account != null) {
 			System.out.println ("Account Balance:" + account.toString());

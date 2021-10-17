@@ -29,9 +29,10 @@ CREATE TABLE IF NOT EXISTS `userprofile` (
   `balance` bigint NOT NULL,
   `is_credit` bit(1) DEFAULT NULL,
   `is_saving` bit(1) DEFAULT NULL,
-  `transaction_date` datetime DEFAULT NULL,
+  `transaction_date` datetime NOT NULL,
   `username` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
 
 
